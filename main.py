@@ -1,4 +1,5 @@
 from lxml import html
+import config as cfg
 import requests
 import re
 import csv
@@ -7,7 +8,10 @@ response = requests.get('https://provanmotors.be/NL/stock/jonge2dehands.aspx?p=1
 
 tree = html.fromstring(response.content)
 
-last_page = int(tree.xpath("(//div[@class='pages']/*)[last()]/text()")[0])
+if (cfg.pages_to_read == 0):
+    last_page = int(tree.xpath("(//div[@class='pages']/*)[last()]/text()")[0])
+else:
+    last_page = cfg.pages_to_read
 
 links = []
 for i in range(1, last_page+1):

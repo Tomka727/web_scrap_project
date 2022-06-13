@@ -1,6 +1,4 @@
 * Libraries to install
-
-** lxml, requests.
-
+lxml, requests.
 
 * open config.py file
